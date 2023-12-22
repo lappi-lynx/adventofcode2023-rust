@@ -5,7 +5,7 @@ fn main() {
 }
 
 fn part2(input: &str) -> String {
-    todo()
+    todo!()
 }
 
 #[cfg(test)]

@@ -6,7 +6,7 @@ fn main() {
 }
 
 fn part1(input: &str) -> u64 {
-    todo()
+    todo!()
 }
 
 #[cfg(test)]
