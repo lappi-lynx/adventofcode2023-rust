@@ -19,7 +19,7 @@ fn main() -> miette::Result<()> {
     Ok(())
 }
 
-fn process(input: &str) -> Result<String, Error> {
+pub fn process(input: &str) -> Result<String, Error> {
     let result = input
     .lines()
     .map(|line| {
