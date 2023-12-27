@@ -15,19 +15,18 @@ fn process_line(line: &str) -> u32 {
     let chars: Vec<char> = line.chars().collect();
     for (index, &char) in chars.iter().enumerate() {
         if char.is_digit(10) {
-            parsed_digits.push(char.to_string())
+            parsed_digits.push(char.to_digit(10).unwrap())
         }
 
-        for (i, word) in SPELLED_NUMBERS.iter().enumerate() {
+        SPELLED_NUMBERS.iter().enumerate().for_each(|(i, word)| {
             if line[index..].starts_with(word) {
-                parsed_digits.push((i+1).to_string());
+                parsed_digits.push((i+1).try_into().unwrap());
             }
-        }
+        });
     }
 
     if let (Some(&ref first), Some(&ref last)) = (parsed_digits.first(), parsed_digits.last()) {
-        let concatenated = format!("{}{}", first, last);
-        result += concatenated.parse::<u32>().unwrap();
+        result += first * 10 + last;
     }
     result
 }
