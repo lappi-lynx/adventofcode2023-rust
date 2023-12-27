@@ -12,15 +12,14 @@ const SPELLED_NUMBERS: [&str; 9] = ["one", "two", "three", "four", "five", "six"
 fn process_line(line: &str) -> u32 {
     let mut result = 0;
     let mut parsed_digits = Vec::new();
-    let chars: Vec<char> = line.chars().collect();
-    for (index, &char) in chars.iter().enumerate() {
+    for (index, char) in line.chars().enumerate() {
         if char.is_digit(10) {
             parsed_digits.push(char.to_digit(10).unwrap())
         }
 
         SPELLED_NUMBERS.iter().enumerate().for_each(|(i, word)| {
             if line[index..].starts_with(word) {
-                parsed_digits.push((i+1).try_into().unwrap());
+                parsed_digits.push(i as u32 + 1);
             }
         });
     }
